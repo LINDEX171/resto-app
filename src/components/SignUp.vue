@@ -3,7 +3,7 @@
     <h1>Sign Up</h1>   
     <div class="register" >
     <input type="text" v-model="name" placeholder="Enter Name" >
-    <input type="text" v-model="email" placeholder="Enter Email" >
+    <input type="email" v-model="email" placeholder="Enter Email" >
     <input type="text" v-model="password" placeholder="Enter Password" >
     <button v-on:click="signUp">Sign Up</button>
     </div> 
@@ -34,8 +34,9 @@ export default {
             })
             console.warn(result);
             if (result.status==201) {
-                alert("signup done");
+              //  alert("signup done");
                 localStorage.setItem("user-info",JSON.stringify(result.data))
+                this.$router.push({name:'HomePage'})
             }
 
         }
