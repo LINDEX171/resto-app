@@ -11,6 +11,7 @@
 
 
 <script>
+import axios from 'axios';
 export default {
     name : 'SignUp',
     data() {
@@ -22,9 +23,21 @@ export default {
         }
     },
     methods: {
-        signUp()
+        async signUp()
         {
-            console.warn("signup",this.name,this.email,this.password )
+            //that will show the value of name,email,password of the user on console
+            // console.warn("signup",this.name,this.email,this.password )
+            let result = await axios.post("http://localhost:3000/users",{
+                email:this.email,
+                password:this.password,
+                name:this.name
+            })
+            console.warn(result);
+            if (result.status==201) {
+                alert("signup done");
+                localStorage.setItem("user-info",JSON.stringify(result.data))
+            }
+
         }
     },
 }

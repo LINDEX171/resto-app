@@ -1,5 +1,6 @@
 install json server : npm install -g json-server
 RUNNING json server : json-server --watch db.json (navigate until the path where located the json file)
+Install axios : npm install axios
 
  postman post methode http://localhost:3000/user 
 {
@@ -19,3 +20,8 @@ on verra au niveau du fichier db.json
   ]
 } 
 automatiquement
+
+
+------calling api -----
+first of all install axios 
+import axios
