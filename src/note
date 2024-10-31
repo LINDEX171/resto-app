@@ -9,12 +9,12 @@ RUNNING json server : json-server --watch db.json (navigate until the path where
 } 
 on verra au niveau du fichier db.json 
 {
-  "user": [
+  "users": [
     {
-      "id": "4cf5",
+      "id": "cecb",
       "name": "papa",
-      "email": "papa",
-      "password": "passer"
+      "email": "papa@gmail.com",
+      "password": "passer123"
     }
   ]
 } 
