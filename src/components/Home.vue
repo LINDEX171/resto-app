@@ -15,7 +15,10 @@
       <td>{{ item.name }}</td>
       <td>{{ item.contact }}</td>
       <td>{{ item.address }}</td>
-      <td><router-link :to="'/update/'+item.id" >update</router-link></td>
+      <td>
+        <router-link :to="'/update/' + item.id">update</router-link
+        ><button v-on:click="deleteRestaurant(item.id)">delete</button>
+      </td>
     </tr>
   </table>
 </template>
@@ -33,15 +36,28 @@ export default {
   components: {
     Header,
   },
+  methods: {
+    async deleteRestaurant(id) {
+      //console.warn(id)
+      let result = await axios.delete("http://localhost:3000/restaurant/"+id);
+      console.warn(result);
+      if (result.status == 200) {
+        this.loadData();
+      }
+    },
+    async loadData() {
+      let user = localStorage.getItem("user-info");
+      this.name = JSON.parse(user).name;
+      if (!user) {
+        this.$router.push({ name: "LoginPage" });
+      }
+      let result = await axios.get("http://localhost:3000/restaurant");
+      console.warn(result);
+      this.restaurant = result.data;
+    },
+  },
   async mounted() {
-    let user = localStorage.getItem("user-info");
-    this.name = JSON.parse(user).name;
-    if (!user) {
-      this.$router.push({ name: "LoginPage" });
-    }
-    let result = await axios.get("http://localhost:3000/restaurant");
-    console.warn(result);
-    this.restaurant = result.data;
+    this.loadData();
   },
 };
 </script>
@@ -49,6 +65,5 @@ export default {
 td {
   width: 160px;
   height: 40px;
-  
 }
 </style>
