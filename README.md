@@ -1,4 +1,4 @@
-# resto-project
+# resto-project Vue-js
 
 ## Project setup
 ```
